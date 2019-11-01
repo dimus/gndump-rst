@@ -1,14 +1,13 @@
 extern crate gndump;
-use gndump::models::DataSource;
+use gndump::dump;
+use gndump::prep::{self, Config};
 
 fn main() {
-    let conn = gndump::establish_connection();
-    let data = DataSource::all(&conn);
-    for datum in data {
-        let title = match datum.title {
-            Some(t) => t,
-            None => String::new(),
-        };
-        println!("{}", title);
-    }
+    simple_logger::init().unwrap();
+    let conf = Config::new();
+    prep::set_dirs(&conf.mysql_dir, &conf.pg_dir).unwrap();
+    match dump::mysql_to_csv(conf) {
+        Ok(()) => (),
+        Err(err) => panic!("CSV error: {}", err),
+    };
 }

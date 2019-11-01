@@ -21,8 +21,8 @@ table! {
         // name_strings_count -> Nullable<Integer>,
         // data_hash -> Nullable<Varchar>,
         // unique_names_count -> Nullable<Integer>,
-        // created_at -> Nullable<Datetime>,
-        // updated_at -> Nullable<Datetime>,
+        created_at -> Nullable<Datetime>,
+        updated_at -> Nullable<Datetime>,
     }
 }
 
@@ -111,30 +111,31 @@ table! {
 
 table! {
     name_strings (id) {
-        id -> Unsigned<Integer>,
+        id -> Integer,
+        // id -> Unsigned<Integer>,
         name -> Nullable<Varchar>,
-        normalized -> Nullable<Varchar>,
-        canonical_form_id -> Nullable<Integer>,
-        has_words -> Nullable<Bool>,
-        uuid -> Decimal,
-        created_at -> Nullable<Datetime>,
-        updated_at -> Nullable<Datetime>,
-        parser_version -> Nullable<Integer>,
-        has_groups -> Nullable<Bool>,
-        surrogate -> Nullable<Bool>,
+        // normalized -> Nullable<Varchar>,
+        // canonical_form_id -> Nullable<Integer>,
+        // has_words -> Nullable<Bool>,
+        // uuid -> Decimal,
+        // created_at -> Nullable<Datetime>,
+        // updated_at -> Nullable<Datetime>,
+        // parser_version -> Nullable<Integer>,
+        // has_groups -> Nullable<Bool>,
+        // surrogate -> Nullable<Bool>,
     }
 }
 
 table! {
     name_string_indices (data_source_id, name_string_id, taxon_id) {
         data_source_id -> Integer,
-        name_string_id -> Unsigned<Integer>,
+        name_string_id -> Integer,
         taxon_id -> Varchar,
         global_id -> Nullable<Varchar>,
         url -> Nullable<Varchar>,
         rank -> Nullable<Varchar>,
         accepted_taxon_id -> Nullable<Varchar>,
-        //synonym -> Nullable<Set>,
+        // synonym -> Nullable<Set>,
         classification_path -> Nullable<Text>,
         classification_path_ids -> Nullable<Text>,
         created_at -> Nullable<Datetime>,
@@ -260,50 +261,50 @@ table! {
 
 table! {
     vernacular_strings (id) {
-        id -> Unsigned<Integer>,
+        id -> Integer,
         name -> Nullable<Varchar>,
-        uuid -> Decimal,
-        created_at -> Nullable<Datetime>,
-        updated_at -> Nullable<Datetime>,
+        // uuid -> Decimal,
+        // created_at -> Nullable<Datetime>,
+        // updated_at -> Nullable<Datetime>,
     }
 }
 
 table! {
     vernacular_string_indices (data_source_id, vernacular_string_id, taxon_id) {
         data_source_id -> Integer,
-        vernacular_string_id -> Unsigned<Integer>,
+        vernacular_string_id -> Integer,
         taxon_id -> Varchar,
         language -> Nullable<Varchar>,
         locality -> Nullable<Varchar>,
         country_code -> Nullable<Varchar>,
-        created_at -> Nullable<Datetime>,
-        updated_at -> Nullable<Datetime>,
+        // created_at -> Nullable<Datetime>,
+        // updated_at -> Nullable<Datetime>,
     }
 }
 
 allow_tables_to_appear_in_same_query!(
-  canonical_forms,
-  data_sources,
-  data_source_contributors,
-  dwca_importers,
-  job_logs,
-  lexical_groups,
-  lexical_group_name_strings,
-  lexical_matches,
-  lexical_match_candidates,
-  name_resolvers,
-  name_strings,
-  name_string_indices,
-  name_words,
-  name_word_semantic_meanings,
-  nomenclatural_codes,
-  parsed_name_strings,
-  progress_statuses,
-  reconcilers,
-  reconciler_batches,
-  reconciler_data_sources,
-  semantic_meanings,
-  users,
-  vernacular_strings,
-  vernacular_string_indices,
+    canonical_forms,
+    data_sources,
+    data_source_contributors,
+    dwca_importers,
+    job_logs,
+    lexical_groups,
+    lexical_group_name_strings,
+    lexical_matches,
+    lexical_match_candidates,
+    name_resolvers,
+    name_strings,
+    name_string_indices,
+    name_words,
+    name_word_semantic_meanings,
+    nomenclatural_codes,
+    parsed_name_strings,
+    progress_statuses,
+    reconcilers,
+    reconciler_batches,
+    reconciler_data_sources,
+    semantic_meanings,
+    users,
+    vernacular_strings,
+    vernacular_string_indices,
 );
